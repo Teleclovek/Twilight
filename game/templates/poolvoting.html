@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+        
+<h1>Poolvoting</h1>
+Hra: <b>{{gameid}}</b>
+<br>
+Tvoje jméno: <b>{{playerid}}</b>
+<br><br>
+
+<br><br>
+Pořadí hráčů pro draft: <br>
+        {% for player in all_players %}
+            {{player.gameorder}}. {{player}}
+        
+            <br>                
+
+        {% endfor %}<br><br>
+<br>
+<b>Rasy v poolu:</b>
+{% for race in racesinpool %}
+    <p> {{race.racename}} </p>
+{% endfor %}
+<br>
+<b> Rasy s jedním hlasem: </b>
+{% for race in race_with_vote %}
+    <p> {{race.racename}} </p>
+{% endfor %}
+<br><br><br>
+{% if all_chosen == False %}
+    ČEKÁME NA OSTATNÍ HRÁČE, až navolí ban a pool.
+    
+{% elif voting_turn == playerid.gameorder %}
+    <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" name="Submit" class="btn btn-secondary">
+    </form>
+{% else %}
+    <b> Nyní hlasuje hráč č. {{voting_turn}}</b>
+    
+    
+{% endif %}
+<br>
+    <br>
+<br><a href="{{ request.get_full_path }}">REFRESH</a>
+{{errors}}
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>DRAFT</h1>
+            HRA:<b> {{gameid}}</b>
+        <br>
+            Hrac:<b> {{playerid}}</b>
+        <br><br>
+        
+        <br><br>
+        Pořadí hráčů pro draft: <br>
+        {% for player in all_players %}
+            {{player.gameorder}}. {{player}}
+        
+            <br>                
+
+        {% endfor %}
+          
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" name="Submit" class="btn btn-secondary">
+        </form>
+            <br>
+            {{ban_pool_same}}
+            {{errors}}
+        <a href="{{ request.get_full_path }}">REFRESH</a>
+{% endblock %}

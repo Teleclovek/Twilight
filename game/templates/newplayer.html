@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>NOVÝ HRÁČ</h1>
+        Hra <b>{{gameid}}</b>
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" name="Submit" class="btn btn-secondary">
+            </form>
+        {{toomanyplayers}}
+{% endblock %}

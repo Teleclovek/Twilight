@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>PIKOVÁNÍ</h1>
+        {% if voting_done %}
+                {% for each in all_players %}
+                        <h2>{{each.gameorder}} - {{each}}</h2>
+                        Picknutá rasa: <b>{{each.chosenrace}}</b>  <br>              
+                        Pozice na mapě: <b>{{each.mappositon}}</b><br>
+                        {%if each.speaker %}
+                                <b>Speaker</b>
+                        {% endif %}
+                {% endfor %}
+                <br><br>
+                {% if yourturn %}
+                        {% if playerid.chosenrace == None %}
+                                <form method="POST">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                        <input type="submit" name="Submit" class="btn btn-secondary">
+                                </form>
+                        {% endif %}
+                        {% if playerid.mappositon == None %}
+                                <form method="POST">
+                                        {% csrf_token %}
+                                        {{form2.as_p}}
+                                        <input type="submit" name="Submit" class="btn btn-secondary">
+                                </form>
+                        {% endif %}
+                        {% if freespeaker %}
+                                <form method="POST">
+                                        {% csrf_token %}
+                                        {{form3.as_p}}
+                                        <input type="submit" name="Submit" class="btn btn-secondary">
+                                </form>
+                        {% endif %}
+                
+                {% else %}
+                        <b> Nejsi na tahu. </b>
+                        <br>
+                        Ostatní hráči pickují.
+                {% endif %}
+        {% else %}
+
+                <b> ČEKÁME AŽ DOHLSASUJÍ OSTANÍ HRÁČI!</b>
+        {% endif %}
+
+        <br>
+        <br>
+        <a href="{{ request.get_full_path }}">REFRESH</a>
+
+{% endblock %}
