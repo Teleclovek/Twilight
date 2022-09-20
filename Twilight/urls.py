@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from game.views import newgame, newplayer, draft, poolvoting, finalpick
+from game.views import mainpage, newgame, newplayer, draft, poolvoting, finalpick
 # gamestatus, draftpage, searchgame, finalpage, poolvoting
 
 urlpatterns = [
+    path('', mainpage, name='mainpageurl'),
     path('admin/', admin.site.urls),
     path('newgame/', newgame, name='newgameurl'),
     path('newplayer/<str:gamepk>/', newplayer, name='newplayerurl'),

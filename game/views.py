@@ -9,6 +9,10 @@ from .form import makegame, addplayer, draftraces, picking2, voting, picking, pi
 from django.http import HttpResponseRedirect
 import random
 
+def mainpage(request):
+
+    return render(request, "mainpage.html",)
+
 def newgame(request):
     if request.method == "POST":
         form = makegame(request.POST)

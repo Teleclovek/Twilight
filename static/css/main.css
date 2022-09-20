@@ -1,0 +1,16 @@
+@font-face {font-family: "Handel Gothic D Bold";
+  src: url("73366e57ebf96c59a9a5af2f1f12b782.eot"); /* IE9*/
+  src: url("73366e57ebf96c59a9a5af2f1f12b782.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("73366e57ebf96c59a9a5af2f1f12b782.woff2") format("woff2"), /* chrome、firefox */
+  url("73366e57ebf96c59a9a5af2f1f12b782.woff") format("woff"), /* chrome、firefox */
+  url("73366e57ebf96c59a9a5af2f1f12b782.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("73366e57ebf96c59a9a5af2f1f12b782.svg#Handel Gothic D Bold") format("svg"); /* iOS 4.1- */
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  background-color: #000000;
+  height: 100%;
+  color: rgb(255, 255, 255)
+}
+
