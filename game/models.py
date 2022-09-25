@@ -2,6 +2,9 @@ from cProfile import label
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+from django.conf import settings
+
 
 class Game(models.Model):
     gamename = models.CharField(max_length=25, verbose_name='Jméno hry')
@@ -38,8 +41,6 @@ class Race(models.Model):
     def __str__(self):
         return self.racename
 
-
-
 class Mapposition(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, blank=True)
     position = models.IntegerField(null = True, blank=True)
@@ -50,7 +51,9 @@ class Mapposition(models.Model):
 
 
 class Player(models.Model):
-    playername = models.CharField(max_length=25, verbose_name="Jméno hráče")
+    playername = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,)
     game = models.ForeignKey(Game, on_delete=models.CASCADE, blank=True)
     gameorder = models.IntegerField(
         validators=[MaxValueValidator(6),MinValueValidator(1)])
@@ -58,6 +61,7 @@ class Player(models.Model):
     mappositon = models.ForeignKey(Mapposition, on_delete=models.CASCADE,null = True, blank=True)
     chosenrace = models.ForeignKey(Race, on_delete=models.CASCADE, null = True, blank=True)
     voted = models.BooleanField(default=False)
+    drafted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.playername
+        return self.playername.username

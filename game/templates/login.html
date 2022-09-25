@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+            
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                
+                <input type="text" name="username" placeholder="Username..." class="form-control">
+            
+            
+                
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                
+                    <input type="password" name="password" placeholder="Password..." class="form-control" >
+           
+
+               
+        
+        <input type="submit" name="Submit" class="btn btn-secondary">
+    </form>
+
+{% endblock %}

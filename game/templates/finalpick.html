@@ -4,12 +4,14 @@
         <h1>PIKOVÁNÍ</h1>
         {% if voting_done %}
                 {% for each in all_players %}
+                <br>
                         <h2>{{each.gameorder}} - {{each}}</h2>
                         Picknutá rasa: <b>{{each.chosenrace}}</b>  <br>              
                         Pozice na mapě: <b>{{each.mappositon}}</b><br>
                         {%if each.speaker %}
                                 <b>Speaker</b>
                         {% endif %}
+                <br>
                 {% endfor %}
                 <br><br>
                 {% if yourturn %}

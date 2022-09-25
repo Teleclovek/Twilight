@@ -5,8 +5,25 @@
     </head>
     <body>
     <center>
+        <nav class="navbar">
+            <ul>
+                <div class="menu">
+                    {% if user.is_authenticated %}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/newgame/">Nová hra</a></li>
+                        <li><a href="/joingame/">Najít hru</a></li>                      
+                        <li><a href="{% url 'logouturl' %}">LogOUT</a></li>
+                    {% else %}
+                        <li><a href="/login/">LOGIN</a></li>
+                        <li><a href="/register/">Registrace</a></li>
+                    {% endif %}
+                </div>
+            </ul>
+        </nav>
+        <main>
         {% block content %}
         {% endblock %}
+        </main>    
     </center>
     </body>
 </html>

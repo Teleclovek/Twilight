@@ -15,17 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from game.views import mainpage, newgame, newplayer, draft, poolvoting, finalpick
-# gamestatus, draftpage, searchgame, finalpage, poolvoting
+from game.views import mainpage, registerpage, loginpage, logoutpage, newgame, joingame, newplayer, draft, poolvoting, finalpick
+
 
 urlpatterns = [
     path('', mainpage, name='mainpageurl'),
+    path('register/', registerpage, name='registerurl'),
+    path('login/', loginpage, name='loginurl'),
+    path('logout/', logoutpage, name='logouturl'),
     path('admin/', admin.site.urls),
     path('newgame/', newgame, name='newgameurl'),
+    path('joingame/', joingame, name='joingameurl'),
     path('newplayer/<str:gamepk>/', newplayer, name='newplayerurl'),
-    path('draft/<str:gamepk>/<str:playerid>/', draft, name='drafturl'),
-    path('poolvoting/<str:gamepk>/<str:playerid>/', poolvoting, name='poolvotingurl'),
-    path('finalpick/<str:gamepk>/<str:playerid>/', finalpick, name='finalpickurl'),
+    path('draft/<int:gamepk>/', draft, name='drafturl'),
+    path('poolvoting/<str:gamepk>/', poolvoting, name='poolvotingurl'),
+    path('finalpick/<str:gamepk>/', finalpick, name='finalpickurl'),
     # path('searchgame/', searchgame, name='searchgameurl'),
 
 ]

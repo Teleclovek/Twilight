@@ -4,6 +4,19 @@ from email.policy import default
 from django import forms
 from django.forms import ModelForm, ModelChoiceField
 from .models import Game, Mapposition, Race, RaceDefault, Player
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User 
+
+
+class CreatUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        help_texts = {
+            'username': None,
+            'email': None,
+            'password': None,
+        }
 
 
 
@@ -72,4 +85,3 @@ class picking3(forms.Form):
     pick3 = forms.BooleanField(required=False, initial=False, label='Speaker')
    
 
-#PREDELAT popisky formularu, pridat menicko nahore, udelat design,

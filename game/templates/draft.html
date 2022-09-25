@@ -2,12 +2,14 @@
 {% block content %}
 
         <h1>DRAFT</h1>
+        <br>
+        <br>
             HRA:<b> {{gameid}}</b>
         <br>
             Hrac:<b> {{playerid}}</b>
         <br><br>
         
-        <br><br>
+        <br>
         Pořadí hráčů pro draft: <br>
         {% for player in all_players %}
             {{player.gameorder}}. {{player}}
@@ -15,7 +17,8 @@
             <br>                
 
         {% endfor %}
-          
+          <br>
+          <br>
         <form method="POST">
             {% csrf_token %}
             {{form.as_p}}
