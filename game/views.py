@@ -5,7 +5,6 @@ from email import message
 from email.policy import default
 from importlib.metadata import requires
 from pyexpat.errors import messages
-import re
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from .models import Player, Race, Game, RaceDefault, Mapposition
@@ -15,7 +14,25 @@ import random
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import git
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
+def update(request):
+    if request.method == "POST":
+        '''
+        pass the path of the diectory where your project will be 
+        stored on PythonAnywhere in the git.Repo() as parameter.
+        Here the name of my directory is "test.pythonanywhere.com"
+        '''
+        repo = git.Repo("kopriva.pythonanywhere.com/") 
+        origin = repo.remotes.origin
+
+        origin.pull()
+
+        return HttpResponse("Updated code on PythonAnywhere")
+    else:
+        return HttpResponse("Couldn't update the code on PythonAnywhere")
 
 def registerpage(request):
     form = CreatUserForm()
