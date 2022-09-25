@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Vyhledání hry</h1>
+        {{gamename}}
+
+        <br><br>
+
+        <form method="POST">
+            {% csrf_token %} 
+            <input type="text" name="gamename" placeholder="Název hry..." >
+            <br>
+            <input type="submit" name="Submit">
+        </form>
+            
+        {{ nogame }}
+
+        <br>
+        <br>
+        Hry, ke kterým jsem se již připojil:
+        <br><br> 
+        
+        {% if my_games  %}
+            {% for each in my_games %}
+                            <h5>{{each}}</h5>
+                        
+            {% endfor %}
+            <br>
+            Pro pokračování v některé z her, přepiš její jméno.
+        {% endif %}
+{% endblock %}
